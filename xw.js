@@ -71,7 +71,17 @@ var ipsymm = 1;
 var ipsymm = 2;
 }
 
-theGrid = new xw(ipsize, ipsymm);
+var ipblock = 0;
+
+if(document.forms['specForm'].elements['ablock1'].checked){
+ipblock = 1;
+}else if(document.forms['specForm'].elements['ablock2'].checked){
+ipblock = 2;
+}
+
+//alert(ipblock)
+
+theGrid = new xw(ipsize, ipsymm, ipblock);
 
 
 document.getElementById('gridtablecontainer').style.display = "inline-block";
@@ -90,13 +100,14 @@ document.getElementById('instr2').style.display = 'none';
 
 }
 
-function xw(size, symm){
+function xw(size, symm, blk){
 this.size = size;
 this.symm = symm;
 this.clueListDown = [];
 this.clueListAcross = [];
 this.distList = [];
 this.isNumbered = false;
+this.autoBlock = blk;
 this.drawMe();
 
 }
@@ -111,7 +122,32 @@ var cellString = '';
 for(var n=0;n<this.size;n++){
 cellString = cellString + '<tr>';
 for(var j=0;j<this.size;j++){
-cellString = cellString + '<td style="background-color:#FFFFFF;" id="blk'+j+'_'+n+'"><div/>';
+
+var colstr = '#FFFFFF';
+
+if(this.autoBlock == 1){
+//block the human oddth of every odd row,starting from 1,1 (0/0)
+//if j == even and n == even
+
+if (j%2 == 0 && n%2 == 0){
+colstr = '#000000';
+}
+
+
+}else if(this.autoBlock == 2){
+//block the human eventh of every even row,starting from 1,1 (0/0)
+//if j == odd and n == odd
+
+if (j%2 != 0 && n%2 != 0){
+colstr = '#000000';
+}
+
+
+
+}
+
+
+cellString = cellString + '<td style="background-color:'+colstr+';" id="blk'+j+'_'+n+'"><div/>';
 cellString = cellString + '</td>';
 };
 

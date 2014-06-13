@@ -77,6 +77,25 @@ if (count($matches)>1){
                  id = "symm90"
                  value = "90" />
           <label for = "symm90">90&deg;</label>
+          </p>
+          <p>
+           <label>Autoblock: </label>           
+          <input type = "radio"
+                 name = "blockRadio"
+                 id = "ablock0"
+                 value = "0"
+                 checked = "checked" />
+          <label for = "ablock0">None</label> 
+          <input type = "radio"
+                 name = "blockRadio"
+                 id = "ablock1"
+                 value = "1" />
+          <label for = "ablock1">Odds</label> 
+            <input type = "radio"
+                 name = "blockRadio"
+                 id = "ablock2"
+                 value = "2" />
+          <label for = "ablock2">Evens</label> 
           
  		</p>
  		<p>
